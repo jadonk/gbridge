@@ -21,9 +21,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include <debug.h>
-#include <greybus.h>
-#include <gb_netlink.h>
+#include "debug.h"
+#include "greybus.h"
+#include "../greybus/gb_netlink.h"
 
 #include "controller.h"
 

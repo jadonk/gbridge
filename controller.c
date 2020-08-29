@@ -20,9 +20,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <debug.h>
-#include <gbridge.h>
-#include <controller.h>
+#include "debug.h"
+#include "gbridge.h"
+#include "controller.h"
 
 static
 TAILQ_HEAD(conn_head, connection)

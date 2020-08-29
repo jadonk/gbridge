@@ -22,7 +22,7 @@
 #include <pthread.h>
 #include <sys/queue.h>
 
-#include <gbridge.h>
+#include "gbridge.h"
 
 struct connection {
 	uint16_t cport1_id;

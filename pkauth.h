@@ -19,8 +19,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-
-#include <linux/types.h>
+#include <sys/types.h>
 
 #ifndef __packed
 #define __packed  __attribute__((__packed__))
