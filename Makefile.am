@@ -14,7 +14,7 @@ gbridge_LDADD = libgreybus.a
 gbridge_SOURCES = main.c \
 		  debug.c \
 		  controller.c \
-		  svc.c
+		  greybus/svc.c
 
 if NETLINK
 gbridge_SOURCES += controllers/gb_netlink.c

@@ -30,8 +30,8 @@
 
 #include "debug.h"
 #include "gbridge.h"
-#include "greybus.h"
-#include "greybus_protocols.h"
+#include "greybus/libgreybus.h"
+#include "greybus/protocols.h"
 #include "pkauth.h"
 
 #ifndef ARRAY_SIZE

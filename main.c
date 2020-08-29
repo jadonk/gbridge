@@ -24,12 +24,10 @@
 #include "debug.h"
 #include "controller.h"
 
-#include "greybus.h"
+#include "greybus/libgreybus.h"
 #include "gbridge.h"
 #include "pkauth.h"
 #include "controllers/uart.h"
-
-int greybus_init(void);
 
 int run;
 
