@@ -115,8 +115,12 @@ AS_IF([test "$HIGHER_VERSION" = "5.8.0"], [
 ])
 
 AC_ARG_VAR([GBDIR], ["greybus sources directory"])
-AS_IF([test "$GBDIR" = ""], [
-  AC_MSG_ERROR([Environment variable GBDIR needs to be set])
+AC_ARG_VAR([KERNEL_DIR], ["kernel sources directory"])
+AS_IF([test "$KERNEL_DIR" = ""], [
+      KERNEL_DIR="/lib/modules/$KERNEL_VERSION/build"
+      AS_IF([test "$GBDIR" = ""], [
+              GBDIR="$KERNEL_DIR/drivers/staging/greybus"
+      ])
 ])
 
 AC_ARG_VAR([GBNETLINKDIR], ["greybus netlink sources directory"])
