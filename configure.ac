@@ -108,6 +108,12 @@ AC_ARG_ENABLE([gbsim],
 esac])
 AM_CONDITIONAL([GBSIM], [test x$gbsim = xtrue])
 
+KERNEL_VERSION=`uname -r`
+HIGHER_VERSION=`echo -e "$KERNEL_VERSION\n5.8.0" | sort -V | tail -1`
+AS_IF([test "$HIGHER_VERSION" = "5.8.0"], [
+	AC_MSG_ERROR(["A kernel >= 5.8 is required"])
+])
+
 AC_ARG_VAR([GBDIR], ["greybus sources directory"])
 AS_IF([test "$GBDIR" = ""], [
   AC_MSG_ERROR([Environment variable GBDIR needs to be set])
