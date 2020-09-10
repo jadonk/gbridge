@@ -28,9 +28,9 @@
 #define __packed  __attribute__((__packed__))
 #define BIT(nr)                 (1UL << (nr))
 
-#include <greybus.h>
-#include <greybus_protocols.h>
-#include <greybus_manifest.h>
+#include <linux/greybus.h>
+#include <linux/greybus/greybus_protocols.h>
+#include <linux/greybus/greybus_manifest.h>
 #include <gb_netlink.h>
 
 #define SVC_CPORT		0
