@@ -16,11 +16,8 @@ AC_CHECK_LIB([nl-genl-3], [genl_register_family])
 AC_CHECK_LIB([avahi-common], [main])
 AC_CHECK_LIB([avahi-client], [main])
 
-AX_PTHREAD
 AC_CHECK_LIB([pthread], [pthread_create])
-CC=$PTHREAD_CC
-CFLAGS="$PTHREAD_CFLAGS $CFLAGS"
-LDFLAGS="$PTHREAD_LDFLAGS $LDFLAGS"
+CFLAGS="-pthread $CFLAGS"
 
 AC_CONFIG_SRCDIR([main.c])
 AC_CONFIG_HEADERS([config.h])
