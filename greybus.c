@@ -326,6 +326,8 @@ int greybus_register_driver(uint8_t intf_id, uint16_t cport_id,
 	if (intf->gb_drivers[cport_id]) {
 		pr_err("A driver has already been registered for cport id %d\n",
 			cport_id);
+		pr_err("Driver is at %p\n",
+		       	intf->gb_drivers[cport_id]);
 		return -EINVAL;
 	}
 
