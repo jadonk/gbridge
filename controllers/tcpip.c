@@ -65,7 +65,9 @@ static int tcpip_connection_create(struct connection *conn)
 	tconn->sock = socket(AF_INET6, SOCK_STREAM, 0);
 	if (tconn->sock < 0) {
 		pr_err("Can't create socket\n");
-		return tconn->sock;
+		ret = tconn->sock;
+		free(tconn);
+		return ret;
 	}
 	conn->priv = tconn;
 

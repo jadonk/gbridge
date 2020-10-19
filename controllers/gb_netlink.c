@@ -43,7 +43,7 @@ parse_gb_nl_msg(struct nl_cache_ops *unused, struct genl_cmd *cmd,
 	uint16_t cport_id;
 	uint8_t intf_id;
 	size_t len;
-	int ret;
+	int ret = 0;
 
 	if (!info->attrs[GB_NL_A_DATA] || !info->attrs[GB_NL_A_CPORT])
 		return -EPROTO;
@@ -70,7 +70,7 @@ parse_gb_nl_msg(struct nl_cache_ops *unused, struct genl_cmd *cmd,
 				     hdr, gb_operation_msg_size(hdr));
 	}
 
-	return 0;
+	return ret;
 }
 
 static struct genl_cmd cmds[] = {

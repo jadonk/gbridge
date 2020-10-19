@@ -326,8 +326,14 @@ int greybus_register_driver(uint8_t intf_id, uint16_t cport_id,
 	if (intf->gb_drivers[cport_id]) {
 		pr_err("A driver has already been registered for cport id %d\n",
 			cport_id);
+		pr_err("Interface is at %p\n",
+		       	intf);
+		pr_err("Drivers array is at %p\n",
+		       	intf->gb_drivers);
 		pr_err("Driver is at %p\n",
 		       	intf->gb_drivers[cport_id]);
+		pr_err("Driver name first character is %c\n",
+		       	(intf->gb_drivers[cport_id])->name[0]);
 		return -EINVAL;
 	}
 

@@ -114,7 +114,7 @@ static int parse_descriptor_bundle(struct manifest *manifest,
 static int parse_descriptor(struct manifest *manifest,
 			    struct greybus_descriptor *desc)
 {
-	int ret;
+	int ret = 0;
 	uint16_t size;
 
 	size = le16toh(desc->header.size);
@@ -140,7 +140,10 @@ static int parse_descriptor(struct manifest *manifest,
 			pr_err("Unknown descriptor type\n");
 	}
 
-	return size;
+	if (ret < 0)
+		return ret;
+	else
+		return size;
 }
 
 void manifest_free(struct manifest *manifest)
@@ -148,8 +151,8 @@ void manifest_free(struct manifest *manifest)
 	struct cport *cport, *tmp_cport;
 	struct bundle *bundle, *tmp_bundle;
 
-	LIST_FOREACH_SAFE(bundle, &manifest->bundles, bundle_node, tmp_bundle) {
-		LIST_FOREACH_SAFE(cport, &bundle->cports, cport_node, tmp_cport) {
+	LIST_FOREACH_SAFE(bundle, &manifest->bundles, manifest->bundle_node, tmp_bundle) {
+		LIST_FOREACH_SAFE(cport, &bundle->cports, bundle->cport_node, tmp_cport) {
 			LIST_REMOVE(cport, cport_node);
 			free(cport);
 		}
@@ -163,7 +166,7 @@ void manifest_free(struct manifest *manifest)
 
 struct manifest *parse_manifest(void *manifest_blob, uint8_t intf_id)
 {
-	int ret;
+	int ret = 0;
 	uint16_t size;
 	uint8_t *p_desc;
 	struct manifest *manifest;
@@ -192,7 +195,7 @@ struct manifest *parse_manifest(void *manifest_blob, uint8_t intf_id)
 	} while(size < manifest->size);
 
 	if (size != manifest->size) {
-		ret = -EINVAL;
+		//ret = -EINVAL;
 		goto err_manifest_free;
 	}
 
@@ -204,7 +207,10 @@ struct manifest *parse_manifest(void *manifest_blob, uint8_t intf_id)
 
 	LIST_INSERT_HEAD(&manifests, manifest, manifest_node);
 
-	return manifest;
+	if (ret < 0)
+		return NULL;
+	else
+		return manifest;
 
 err_manifest_free:
 	manifest_free(manifest);

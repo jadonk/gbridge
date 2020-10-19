@@ -96,8 +96,9 @@ int register_uart_controller(const char *file_name, int baudrate)
 
 	uart_ctrl->fd = open(file_name, O_RDWR | O_NOCTTY);
 	if (uart_ctrl->fd < 0) {
+		ret = uart_ctrl->fd;
 		free(uart_ctrl);
-		return uart_ctrl->fd;
+		return ret;
 	}
 
 	cfmakeraw(&tio);
@@ -109,6 +110,7 @@ int register_uart_controller(const char *file_name, int baudrate)
 	if (ret < 0) {
 		close(uart_ctrl->fd);
 		free(uart_ctrl);
+		return ret;
 	}
 
 	ctrl = malloc(sizeof(*ctrl));
