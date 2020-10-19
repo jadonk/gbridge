@@ -140,8 +140,8 @@ static void tcpip_hotplug(struct controller *ctrl, const char *host_name,
 #if 0
 	td->port = port;
 	avahi_address_snprint(td->addr, sizeof(td->addr), address);
-	td->host_name = malloc(strlen(host_name) + 1);
 #else
+	td->host_name = malloc(strlen(host_name) + 1);
 	td->port = 4242;
 	snprintf(td->addr, sizeof(td->addr), "2001:db8::1");
 #endif
