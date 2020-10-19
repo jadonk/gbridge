@@ -244,7 +244,11 @@ int netlink_init(struct controller * ctrl)
 
 int netlink_interface_create(struct interface *intf)
 {
+	int i;
 	intf->id = 0;
+
+	for (i=0; i<GB_NETLINK_NUM_CPORT; i++)
+		intf->gb_drivers[i] = NULL;
 
 	return 0;
 }
